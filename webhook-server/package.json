@@ -1,0 +1,20 @@
+{
+  "name": "test-webhook-server",
+  "version": "1.0.0",
+  "description": "Test webhook server for receiving CloudEvents",
+  "main": "src/webhook-server.js",
+  "scripts": {
+    "start": "node src/webhook-server.js",
+    "dev": "nodemon src/webhook-server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": ["webhook", "cloudevents", "testing"],
+  "author": "Kafka Webhook Sender",
+  "license": "MIT"
+}

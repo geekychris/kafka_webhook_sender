@@ -1,0 +1,27 @@
+FROM eclipse-temurin:21-jre-alpine
+
+# Install required packages
+RUN apk add --no-cache curl libstdc++
+
+# Create application user
+RUN addgroup -g 1001 -S appuser && \
+    adduser -u 1001 -S appuser -G appuser
+
+WORKDIR /app
+
+# Create data directory
+RUN mkdir -p /app/data && chown -R appuser:appuser /app
+
+# Copy the pre-built JAR with controllers
+COPY app-with-controllers.jar app.jar
+
+# Switch to non-root user
+USER appuser
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 --start-period=60s \
+  CMD curl -f http://localhost:8080/actuator/health || exit 1
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "app.jar"]

@@ -1,0 +1,62 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: kafka-webhook-sender
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: webhook-sender-group
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      session-timeout: 30000ms
+      heartbeat-interval: 3000ms
+      max-poll-records: 100
+
+# Kafka Configuration
+kafka:
+  topic:
+    events: events
+  consumer:
+    group-id: webhook-sender-group
+    auto-offset-reset: earliest
+    max-poll-records: 100
+    session-timeout-ms: 30000
+    heartbeat-interval-ms: 3000
+
+# RocksDB Configuration  
+rocksdb:
+  path: ./data/rocksdb
+
+# Event Delivery Configuration
+event:
+  delivery:
+    scheduler:
+      delay: 5000  # 5 seconds between delivery cycles
+
+# Actuator Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+# Logging Configuration
+logging:
+  level:
+    com.example.kafkawebhooksender: DEBUG
+    org.apache.kafka: WARN
+    org.rocksdb: WARN
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"

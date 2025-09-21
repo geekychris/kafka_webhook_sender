@@ -1,0 +1,17 @@
+{
+  "to": "user-events",
+  "deliveryMethod": "WEBHOOK",
+  "endpoint": "http://test-webhook:8080/webhook",
+  "headers": {
+    "Content-Type": "application/json",
+    "X-Source": "kafka-webhook-sender",
+    "X-Event-Type": "webhook-delivery"
+  },
+  "configuration": {},
+  "enabled": true,
+  "createdAt": "2025-09-20T17:51:00Z",
+  "updatedAt": "2025-09-20T17:51:00Z",
+  "maxRetries": 3,
+  "retryDelayMs": 1000,
+  "batchSize": 1
+}
