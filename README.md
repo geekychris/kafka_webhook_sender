@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.png" alt="Kafka Webhook Sender logo" width="180">
+</p>
+
 # Kafka Webhook Sender
 
 A production-ready Spring Boot service that consumes CloudEvents from Kafka and delivers them to webhook endpoints with ordered delivery guarantees, retry logic, and comprehensive monitoring.
